@@ -3,74 +3,20 @@
   max-width: 800px;
   margin: 0 auto;
   min-height: calc(100vh - 120px);
-}
-
-.searchContainer {
-  position: relative;
-  margin: 2rem 0;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.suggestionsList {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #333;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 1000;
-}
-
-.suggestionItem {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.suggestionItem:hover {
-  background: #f0f0f0;
-}
-
-.savedPlaces {
-  margin-top: 2rem;
-}
-
-.savedPlaces h2 {
-  margin-bottom: 2rem;
-}
-
-.dateGroup {
-  margin-bottom: 2rem;
-}
-
-.dateGroup h3 {
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #eee;
-}
-
-.placeItem {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
+  justify-content: center;
 }
 
-.dateInput {
-  padding: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.welcome {
+  text-align: center;
 }
+
+.welcome h1 {
+  margin-bottom: 1rem;
+}
+
+.welcome p {
+  color: #666;
+  font-size: 1.2rem;
+} 

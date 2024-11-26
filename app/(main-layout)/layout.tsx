@@ -13,8 +13,11 @@ export default function MainLayout({
           <Link href={`/`}>
             Homepage
           </Link>
+          <Link href={`/places-search`}>
+            Places Search
+          </Link>
           <Link href={`/about`}>
-            What is this
+            What's this
           </Link>
           <Link href={`/login`}>
             Login
