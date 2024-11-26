@@ -3,7 +3,7 @@ import styles from './page.module.css';
 const About = () => {
   return (
     <div className={styles.container}>
-      <h1>What's this?</h1>
+      <h1>What&apos;s this?</h1>
       
       <section className={styles.section}>
         <h2>All your beloved trips in one place</h2>
