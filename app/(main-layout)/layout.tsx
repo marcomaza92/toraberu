@@ -17,7 +17,7 @@ export default function MainLayout({
             Places Search
           </Link>
           <Link href={`/about`}>
-            What's this
+            What&apos;s this
           </Link>
           <Link href={`/login`}>
             Login
