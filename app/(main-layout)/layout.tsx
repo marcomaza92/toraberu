@@ -14,7 +14,7 @@ export default function MainLayout({
             Homepage
           </Link>
           <Link href={`/about`}>
-            What's this
+            What is this
           </Link>
           <Link href={`/login`}>
             Login
