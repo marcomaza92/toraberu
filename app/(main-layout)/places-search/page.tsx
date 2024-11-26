@@ -11,17 +11,21 @@ interface Place {
   id: number;
   place_name: string;
   visit_date: string | null;
+  visit_time: string | null;
 }
 
 const PlacesSearch = () => {
   const [savedPlaces, setSavedPlaces] = useState<Place[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState<string>('');
+  const [isLoadingLocation, setIsLoadingLocation] = useState(false);
+  const [currentCoords, setCurrentCoords] = useState<{ lat: number; lng: number } | null>(null);
 
   const fetchPlaces = async () => {
     try {
       const { data, error } = await supabase
         .from('places')
-        .select('id, place_name, visit_date')
+        .select('id, place_name, visit_date, visit_time')
         .order('visit_date', { ascending: true });
 
       if (error) throw error;
@@ -53,6 +57,25 @@ const PlacesSearch = () => {
       );
     } catch (error) {
       console.error('Error updating date:', error);
+    }
+  };
+
+  const handleTimeChange = async (id: number, newTime: string) => {
+    try {
+      const { error } = await supabase
+        .from('places')
+        .update({ visit_time: newTime })
+        .eq('id', id);
+
+      if (error) throw error;
+
+      setSavedPlaces(places =>
+        places.map(place =>
+          place.id === id ? { ...place, visit_time: newTime } : place
+        )
+      );
+    } catch (error) {
+      console.error('Error updating time:', error);
     }
   };
 
@@ -126,6 +149,42 @@ const PlacesSearch = () => {
     }, 200);
   };
 
+  const getCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+      return;
+    }
+
+    setIsLoadingLocation(true);
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          setCurrentCoords({ lat: latitude, lng: longitude });
+          
+          const response = await fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
+          );
+          const data = await response.json();
+          
+          if (data.results && data.results[0]) {
+            setCurrentLocation(data.results[0].formatted_address);
+          }
+        } catch (error) {
+          console.error('Error getting location:', error);
+          alert('Error getting location. Please try again.');
+        } finally {
+          setIsLoadingLocation(false);
+        }
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+        alert('Unable to retrieve your location');
+        setIsLoadingLocation(false);
+      }
+    );
+  };
+
   return (
     <div className={styles.container}>
       <h1>Places Search</h1>
@@ -162,6 +221,26 @@ const PlacesSearch = () => {
         )}
       </div>
 
+      <div className={styles.locationContainer}>
+        <button 
+          onClick={getCurrentLocation}
+          className={styles.locationButton}
+          disabled={isLoadingLocation}
+        >
+          {isLoadingLocation ? 'Getting location...' : 'Get Current Location'}
+        </button>
+        {currentLocation && (
+          <a 
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(currentLocation)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.placeLink}
+          >
+            {currentLocation}
+          </a>
+        )}
+      </div>
+
       <div className={styles.savedPlaces}>
         <h2>Saved Places</h2>
         {isLoading ? (
@@ -187,25 +266,47 @@ const PlacesSearch = () => {
                   }
                 </h3>
                 <ul>
-                  {places.map((place) => (
-                    <li key={place.id} className={styles.placeItem}>
-                      <span>{place.place_name}</span>
-                      <div className={styles.placeActions}>
-                        <input
-                          type="date"
-                          value={place.visit_date || ''}
-                          onChange={(e) => handleDateChange(place.id, e.target.value)}
-                          className={styles.dateInput}
-                        />
-                        <button 
-                          onClick={() => handleDelete(place.id)}
-                          className={styles.deleteButton}
+                  {places
+                    .sort((a, b) => {
+                      if (!a.visit_time) return 1;
+                      if (!b.visit_time) return -1;
+                      return a.visit_time.localeCompare(b.visit_time);
+                    })
+                    .map((place) => (
+                      <li key={place.id} className={styles.placeItem}>
+                        <a 
+                          href={currentCoords 
+                            ? `https://www.google.com/maps/dir/?api=1&origin=${currentCoords.lat},${currentCoords.lng}&destination=${encodeURIComponent(place.place_name)}`
+                            : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.place_name)}`
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.placeLink}
                         >
-                          Delete
-                        </button>
-                      </div>
-                    </li>
-                  ))}
+                          {place.place_name}
+                        </a>
+                        <div className={styles.placeActions}>
+                          <input
+                            type="date"
+                            value={place.visit_date || ''}
+                            onChange={(e) => handleDateChange(place.id, e.target.value)}
+                            className={styles.dateInput}
+                          />
+                          <input
+                            type="time"
+                            value={place.visit_time || ''}
+                            onChange={(e) => handleTimeChange(place.id, e.target.value)}
+                            className={styles.timeInput}
+                          />
+                          <button 
+                            onClick={() => handleDelete(place.id)}
+                            className={styles.deleteButton}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </li>
+                    ))}
                 </ul>
               </div>
             ))

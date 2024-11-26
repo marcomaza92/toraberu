@@ -41,7 +41,7 @@
 }
 
 .suggestionItem:hover {
-  background: #f0f0f0;
+  background: rebeccapurple;
 }
 
 .savedPlaces {
@@ -92,4 +92,61 @@
 
 .deleteButton:hover {
   background-color: #cc0000;
+}
+
+.timeInput {
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.placeLink {
+  color: #fefefe;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.placeLink:hover {
+  color: #666;
+}
+
+.savedPlacesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.locationContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.locationButton {
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.locationButton:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.locationButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.currentLocation {
+  color: #666;
+  font-size: 0.9rem;
 }
