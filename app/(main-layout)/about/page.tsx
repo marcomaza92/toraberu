@@ -11,8 +11,8 @@ const About = () => {
       </section>
 
       <section className={styles.section}>
-        <h2>Powered with Google Places API</h2>
-        <p>Search for any place worldwide using Google's extensive database. Get accurate location suggestions and save them to your personal collection with just a click.</p>
+        <h2>Powered with <em>some</em> AI</h2>
+        <p>Search for any place worldwide using Google&apos;s extensive database and some AI systems. Get accurate location suggestions and save them to your personal collection with just a click.</p>
       </section>
 
       <section className={styles.section}>
