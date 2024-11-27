@@ -63,22 +63,30 @@
 }
 
 .placeItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
   padding: 0.5rem 0;
+  align-items: start;
 }
 
-.dateInput {
-  padding: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.placeLink {
+  align-self: center;
 }
 
 .placeActions {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.dateInput,
+.timeInput {
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 120px;
 }
 
 .deleteButton {
@@ -92,22 +100,6 @@
 
 .deleteButton:hover {
   background-color: #cc0000;
-}
-
-.timeInput {
-  padding: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.placeLink {
-  color: #fefefe;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.placeLink:hover {
-  color: #666;
 }
 
 .savedPlacesHeader {
@@ -149,4 +141,21 @@
 .currentLocation {
   color: #666;
   font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .placeItem {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .placeActions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .placeCrudActions {
+    display: flex;
+    justify-content: end;
+  }
 }
