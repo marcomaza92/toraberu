@@ -76,7 +76,7 @@
 
 .placeActions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
   align-items: flex-start;
 }
@@ -152,10 +152,5 @@
   .placeActions {
     flex-direction: row;
     flex-wrap: wrap;
-  }
-
-  .placeCrudActions {
-    display: flex;
-    justify-content: end;
   }
 }
