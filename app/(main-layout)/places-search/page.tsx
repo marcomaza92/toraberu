@@ -298,6 +298,8 @@ const PlacesSearch = () => {
                             onChange={(e) => handleTimeChange(place.id, e.target.value)}
                             className={styles.timeInput}
                           />
+                        </div>
+                        <div className={styles.placeCrudActions}>
                           <button 
                             onClick={() => handleDelete(place.id)}
                             className={styles.deleteButton}
