@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-google-maps/api": "^2.20.3",
     "@supabase/supabase-js": "^2.46.1",
+    "appwrite": "^16.1.0",
     "nequi": "link:/Users/marcomaza/www/personal/nequi",
     "next": "14.0.4",
     "react": "^18",
