@@ -195,7 +195,7 @@ const PlacesSearch = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <h1>Places Search</h1>
 
       <div className={styles.searchContainer}>
@@ -249,7 +249,7 @@ const PlacesSearch = () => {
         )}
       </div>
 
-      <div className={styles.savedPlaces}>
+      <section className={styles.savedPlaces}>
         <h2>Saved Places</h2>
         {isLoading ? (
           <p>Loading saved places...</p>
@@ -332,8 +332,8 @@ const PlacesSearch = () => {
               </div>
             ))
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
