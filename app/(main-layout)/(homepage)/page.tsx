@@ -39,15 +39,15 @@ const Homepage = () => {
   }, [fetchFromAppWrite]);
 
   return (
-    <main className={styles.container}>
-      <section className={styles.welcome}>
+    <section className={styles.container}>
+      <div className={styles.welcome}>
         <h1>Welcome!</h1>
         <p>Choose an option from the top navbar</p>
         {data.map((place, index) => (
           <p key={index}>{place.name}</p>
         ))}
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };
 
