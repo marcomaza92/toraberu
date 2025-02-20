@@ -7,18 +7,12 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import styles from "./page.module.css";
 import { createClient } from "@supabase/supabase-js";
+import type { Place } from "@/types/places";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
   process.env.NEXT_PUBLIC_SUPABASE_KEY ?? ""
 );
-
-interface Place {
-  id: number;
-  place_name: string;
-  visit_date: string | null;
-  visit_time: string | null;
-}
 
 const PlacesSearch = () => {
   const [savedPlaces, setSavedPlaces] = useState<Place[]>([]);
