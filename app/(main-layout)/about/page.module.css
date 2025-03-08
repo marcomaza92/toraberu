@@ -17,13 +17,13 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.section h2 {
+.sectionTitle {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #eee;
 }
 
-.section p {
+.sectionContent {
   line-height: 1.6;
   color: #666;
 }
