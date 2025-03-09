@@ -1,13 +1,6 @@
 /* @import "nequi/dist/index.css"; */
 
 :root {
-
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    
-  }
 }
 
 * {
@@ -38,6 +31,9 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
+  :root {
+  }
+
   html {
     color-scheme: dark;
   }

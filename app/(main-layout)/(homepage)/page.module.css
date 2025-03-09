@@ -11,12 +11,3 @@
 .welcome {
   text-align: center;
 }
-
-.welcome h1 {
-  margin-bottom: 1rem;
-}
-
-.welcome p {
-  color: #666;
-  font-size: 1.2rem;
-} 

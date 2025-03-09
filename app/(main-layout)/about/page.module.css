@@ -5,10 +5,6 @@
   min-height: calc(100vh - 120px);
 }
 
-.container h1 {
-  margin-bottom: 2rem;
-}
-
 .section {
   margin-bottom: 3rem;
   padding: 1.5rem;
