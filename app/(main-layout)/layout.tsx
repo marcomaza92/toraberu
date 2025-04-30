@@ -12,7 +12,7 @@ export default function MainLayout({
         <nav className={styles.nav}>
           <Link href={`/`}>Homepage</Link>
           <Link href={`/places-search`}>Places Search</Link>
-          <Link href={`/about`}>What&apos;s this</Link>
+          <Link href={`/about`}>{`What's this`}</Link>
           <Link href={`/login`}>Login</Link>
           <Link href={`/register`}>Register</Link>
         </nav>

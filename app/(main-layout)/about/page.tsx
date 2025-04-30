@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 const About = () => {
   return (
     <section className={styles.container}>
-      <h1>What&apos;s this?</h1>
+      <h1>{`What's this`}</h1>
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>
@@ -21,9 +21,9 @@ const About = () => {
           Powered with <em>some</em> AI
         </h2>
         <p className={styles.sectionContent}>
-          Search for any place worldwide using Google&apos;s extensive database
+          {`Search for any place worldwide using Google's extensive database
           and some AI systems. Get accurate location suggestions and save them
-          to your personal collection with just a click.
+          to your personal collection with just a click.`}
         </p>
       </section>
 
